@@ -1,0 +1,5 @@
+DATABASE_URL=file:./dev.db
+PORT=5000
+NODE_ENV=production
+CORS_ORIGIN=*
+JWT_SECRET=gestion-finance-secret-key-2025
