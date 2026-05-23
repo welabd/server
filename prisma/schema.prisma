@@ -1,12 +1,10 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
@@ -16,51 +14,46 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
 model Setting {
-  id          Int      @id @default(autoincrement())
-  key         String   @unique
-  value       String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  key       String   @unique
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
-
 model Cheque {
-  id           Int       @id @default(autoincrement())
-  numero       String
-  clientName   String
-  amount       Float
-  date         DateTime
-  dueDate      DateTime?
-  type         String    @default("Reçu")
-  status       String    @default("Non Payé")
-  notes        String?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  id         Int       @id @default(autoincrement())
+  numero     String
+  clientName String
+  amount     Float
+  date       DateTime
+  dueDate    DateTime?
+  type       String    @default("Reçu")
+  status     String    @default("Non Payé")
+  notes      String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 }
-
 model Recette {
-  id          Int      @id @default(autoincrement())
-  date        DateTime
-  amount      Float
-  notes       String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  amount    Float
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
-
 model Credit {
-  id           Int       @id @default(autoincrement())
-  clientName   String
-  totalAmount  Float
-  paidAmount   Float     @default(0)
-  date         DateTime
-  notes        String?
-  status       String    @default("Non Payé")
-  payments     Payment[]
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  id          Int       @id @default(autoincrement())
+  clientName  String
+  totalAmount Float
+  paidAmount  Float     @default(0)
+  date        DateTime
+  notes       String?
+  status      String    @default("Non Payé")
+  payments    Payment[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
-
 model Payment {
   id        Int      @id @default(autoincrement())
   creditId  Int
